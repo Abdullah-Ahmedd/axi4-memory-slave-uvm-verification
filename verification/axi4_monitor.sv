@@ -69,24 +69,33 @@ task monitor_read( axi4_transaction tr_read );
       tr_read.resp = 0; //initial value 
       assert(tr_read.randomize( r_ready_delay ))
       else `uvm_fatal("[axi4_monitor]", $sformatf("the delay was not randomized correctly"));
+      @( negedge vif.ACLK );
       if( tr_read.r_ready_delay > 0 )
         begin
           vif.RREADY = 0;
-          repeat( tr_read.r_ready_delay ) @( negedge vif.ACLK ) //delay between every read
+          repeat( tr_read.r_ready_delay ) @( negedge vif.ACLK ); //delay between every read
           vif.RREADY = 1;       
         end
         //waiting between for arvalid
-        wait(20)
+        forever
           begin
-            @(negedge vif.ACLK)
-            if( vif.ARVALID )
-            break;
+            @( posedge vif.ACLK );
+            if( vif.RVALID && vif.RREADY )
+              begin
+                  @( posedge vif.ACLK );
+                  //storing the read data and the resp 
+                    tr_read.output_burst.push_back( vif.RDATA );
+                    tr_read.resp = vif.RRESP;
+                    
+                    break;
+              end
           end
-        //storing the read data and the resp 
-          tr_read.output_burst.push_back( vif.RDATA );
-          tr_read.resp = vif.RRESP;
+
     end
+
+    @( negedge vif.ACLK );    
     vif.RREADY = 1; //default value
+
 endtask
 
 task monitor_write ( axi4_transaction tr_write );
@@ -94,20 +103,30 @@ task monitor_write ( axi4_transaction tr_write );
   assert( tr_write.randomize( b_ready_delay ) )
   else `uvm_fatal("[axi4_monitor]", $sformatf("there was a problem with generating the randomization of the "));
 
-  tr_write.resp = vif.BRESP;
+  //tr_write.resp = vif.BRESP;
   vif.WVALID = 0;
   vif.WLAST = 0;
 
-  repeat(tr_write.b_ready_delay) @(negedge vif.ACLK);
-  vif.BREADY = 1;
-
-  repeat( 20 ) 
+  @(negedge vif.ACLK);
+  if(  tr_write.b_ready_delay > 0 ) 
     begin
-      @(negedge vif.ACLK)
-      if( vif.BVALID )
-      break;
+        vif.BREADY = 0;
+        repeat(tr_write.b_ready_delay) @(negedge vif.ACLK);
     end
 
+  vif.BREADY = 1;
+
+  forever
+    begin
+      @( posedge vif.ACLK);
+      if( vif.BVALID && vif.BREADY )
+        begin
+          tr_write.resp = vif.BRESP;
+          break;
+        end
+    end
+
+    @( negedge vif.ACLK );
     vif.BREADY = 0;
 
 endtask
@@ -124,7 +143,7 @@ task run_phase(uvm_phase phase);
   forever
     begin
         //waiting for the stimulus to be done 
-          wait( cfg_stimulus_done.triggered );
+          @( c_cfg.stimulus_done );
       tr = c_cfg.current_tr; 
       tr.output_burst.delete(); //deleting the previous monitored value
       tr.resp = 0;
@@ -141,7 +160,7 @@ task run_phase(uvm_phase phase);
         //now we need to send the monitored value in the analysis port 
           analysis_port.write( tr );
         //now we will raise the monitor done
-        ->cfg.monitor_done;
+        ->c_cfg.monitor_done;
     end
 
 endtask

@@ -5,7 +5,7 @@
 //         using an inteface                                                        //
 /////////////////////////////////////////////////////////////////////////////////////
 
-interface axi_if
+interface axi4_if
 #(
 parameter DATA_WIDTH = 32,
 parameter ADDR_WIDTH = 16,

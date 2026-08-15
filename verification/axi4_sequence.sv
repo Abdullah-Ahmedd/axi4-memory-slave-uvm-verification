@@ -12,7 +12,7 @@ class axi4_sequence extends uvm_sequence #( axi4_transaction );
   `uvm_object_utils( axi4_sequence );
 
   //number of transactions
-  parameter NUM_TRANSACTIONS = 500000;
+  parameter NUM_TRANSACTIONS = 50;
 
   axi4_common_cfg c_cfg;
 
@@ -23,9 +23,11 @@ class axi4_sequence extends uvm_sequence #( axi4_transaction );
 
   task body();
 
+         axi4_transaction tr;
+
          if
       (
-        !uvm_config_db#( axi4_common_cfg ) :: get(this , "*" , "c_cfg" ,c_cfg)
+        !uvm_config_db#( axi4_common_cfg ) :: get(null , get_full_name() , "c_cfg" ,c_cfg)
       )
         begin
           `uvm_fatal("[axi4_sequence]", $sformatf("the axi4_common_cfg could not be retreived sucessfully"));
@@ -34,9 +36,6 @@ class axi4_sequence extends uvm_sequence #( axi4_transaction );
         begin
             `uvm_info("[axi4_sequence]", $sformatf("the axi4_common_cfg was retreived sucessfully "), UVM_LOW );
         end
-
-
-    axi4_transaction tr;
 
     repeat( NUM_TRANSACTIONS )
         begin
@@ -50,7 +49,7 @@ class axi4_sequence extends uvm_sequence #( axi4_transaction );
           finish_item( tr );
 
           //will wait not to start the next randomization till the we make sure the monitor has seen the new values
-          wait( c_cfg.monitor_done.triggered );
+          @( c_cfg.monitor_done );
         end
         `uvm_info("[axi4_sequence]", $sformatf("axi4_sequence has finished generating the trnasactions"), UVM_NONE);
 

@@ -1,7 +1,7 @@
 `ifndef axi4_driver 
 `define axi4_driver
 
-`include "axi4_if.sv"
+//`include "axi4_if.sv"
 
 `include "axi4_transaction.sv"
 `include "axi4_common_cfg.sv"
@@ -121,12 +121,12 @@ task drive_read (axi4_transaction req_read );
       vif.ARSIZE = req_read.size;
       vif.ARVALID = 1'b1;
 
-      repeat( 20 )
+      while ( !vif.ARREADY  )
         begin
-          @( negedge vif.ACLK )
-            if( vif.ARREADY )
-            break;
+          @( negedge vif.ACLK );
         end
+
+         @( negedge vif.ACLK );
         vif.ARVALID = 1'b0;
 endtask
 
@@ -140,17 +140,17 @@ task drive_write ( axi4_transaction req_write );
     end
     //waiting for delay
     repeat(req_write.aw_valid_delay) @(negedge vif.ACLK);
-      vif.AWADDR = req_read.address;
-      vif.AWLEN = req_read.length;
-      vif.AWSIZE = req_read.size;
+      vif.AWADDR = req_write.address;
+      vif.AWLEN = req_write.length;
+      vif.AWSIZE = req_write.size;
       vif.AWVALID = 1'b1;
 
-    repeat( 20 )
+    while ( !vif.AWREADY )
         begin
-          @( negedge vif.ACLK )
-            if( vif.AWREADY )
-            break;
+          @( negedge vif.ACLK );
         end
+
+        @( negedge vif.ACLK );
         vif.AWVALID = 1'b0; 
 
         //now we will start driving data from input_burst to vif
@@ -164,13 +164,13 @@ task drive_write ( axi4_transaction req_write );
               vif.WVALID = 1'b1;
               vif.WLAST = 1'b1;
 
-              //waiting 20 clock cycles for WREADY
-                repeat( 20 )
+              //waiting for WREADY
+                while ( !vif.WREADY )
                     begin
-                      @( negedge vif.ACLK )
-                        if( vif.WREADY )
-                        break;
-                    end             
+                      @( negedge vif.ACLK );
+                    end
+
+                  @( negedge vif.ACLK );             
             
           end
 
@@ -184,13 +184,13 @@ task drive_write ( axi4_transaction req_write );
                   vif.WVALID = 1'b1;
                   vif.WLAST = (i == req_write.length ); 
                   
-                ///waiting 20 clock cycles for WREADY
-                repeat( 20 )
+                ///waiting  for WREADY
+                while( !vif.WREADY )
                     begin
-                      @( negedge vif.ACLK )
-                        if( vif.WREADY )
-                        break;
+                      @( negedge vif.ACLK );
                     end
+
+                    @( negedge vif.ACLK );
                     
                     if( i < req_write.length )
                       begin
@@ -205,11 +205,11 @@ task drive_write ( axi4_transaction req_write );
               end
          
           end
-        
+
+      vif.WVALID = 1'b0;
+      vif.WLAST = 1'b0;        
 
 endtask
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

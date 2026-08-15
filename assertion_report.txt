@@ -1,0 +1,171 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /axi4_tb/check
+=== Design Unit: work.axi4_assert
+=================================================================================
+
+Assertion Coverage:
+    Assertions                      29        29         0   100.00%
+--------------------------------------------------------------------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass     Vacuous    Disable    Attempt     Active Peak Active ATV
+                                                  Count        Count    Count      Count      Count       Count  Count          
+--------------------------------------------------------------------------------------------------------------------------------
+/axi4_tb/check/AWREADY_rst_assert
+                     axi4_assert.sv(22)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/WREADY_rst_assert
+                     axi4_assert.sv(32)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/BRESP_reset_assert
+                     axi4_assert.sv(42)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/BVALID_reset_assert
+                     axi4_assert.sv(52)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/ARREADY_reset_assert
+                     axi4_assert.sv(62)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/RDATA_reset_assert
+                     axi4_assert.sv(72)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/RRESP_reset_assert
+                     axi4_assert.sv(82)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/RVALID_reset_assert
+                     axi4_assert.sv(92)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/RLAST_reset_assert
+                     axi4_assert.sv(102)                0          2     246702          0     246704          0           1 off
+/axi4_tb/check/AWVALID_AWREADY_assert
+                     axi4_assert.sv(120)                0        256     246447          1     246704          0           1 off
+/axi4_tb/check/AWADDR_STABLE_assert
+                     axi4_assert.sv(132)                0         15     246688          1     246704          0           1 off
+/axi4_tb/check/AWLEN_STABLE_assert
+                     axi4_assert.sv(142)                0         15     246688          1     246704          0           1 off
+/axi4_tb/check/AWSIZE_STABLE_assert
+                     axi4_assert.sv(152)                0         15     246688          1     246704          0           1 off
+/axi4_tb/check/WDATA_STABLE_assert
+                     axi4_assert.sv(170)                0         15     246688          1     246704          0           1 off
+/axi4_tb/check/WLAST_AT_LAST_assert
+                     axi4_assert.sv(186)                0        256     246447          1     246704          0           1 off
+/axi4_tb/check/BVALID_ASSERT_assert
+                     axi4_assert.sv(203)                0        256     246447          1     246704          0           1 off
+/axi4_tb/check/BVALID_DEASSERT_assert
+                     axi4_assert.sv(216)                0        255     246447          1     246704          1           1 off
+/axi4_tb/check/BRESP_STABLE_assert
+                     axi4_assert.sv(230)                0        256     246447          1     246704          0           1 off
+/axi4_tb/check/ARVALID_AWREADY_assert
+                     axi4_assert.sv(248)                0        244     246459          1     246704          0           1 off
+/axi4_tb/check/ARADDR_STABLE_assert
+                     axi4_assert.sv(259)                0        244     246458          2     246704          0           1 off
+/axi4_tb/check/ARLEN_STABLE_assert
+                     axi4_assert.sv(269)                0        244     246458          2     246704          0           1 off
+/axi4_tb/check/ARSIZE_STABLE_assert
+                     axi4_assert.sv(279)                0        244     246458          2     246704          0           1 off
+/axi4_tb/check/RVALID_ASSERT_assert
+                     axi4_assert.sv(297)                0      92909     153794          1     246704          0           2 off
+/axi4_tb/check/RLAST_AT_LAST_assert
+                     axi4_assert.sv(313)                0        244     246459          1     246704          0           1 off
+/axi4_tb/check/BRESP_ASSERT_assert
+                     axi4_assert.sv(328)                0        256     246447          1     246704          0           1 off
+/axi4_tb/check/boundary_4KB_WRITE_assert
+                     axi4_assert.sv(343)                0        293     246410          1     246704          0           1 off
+/axi4_tb/check/boundary_4KB_READ_assert
+                     axi4_assert.sv(353)                0      22454     224249          1     246704          0           1 off
+/axi4_tb/check/MEMORY_RANGE_WRITE_assert
+                     axi4_assert.sv(368)                0        290     246413          1     246704          0           1 off
+/axi4_tb/check/MEMORY_RANGE_READ_assert
+                     axi4_assert.sv(378)                0      21820     224883          1     246704          0           1 off
+
+=================================================================================
+=== Instance: /axi4_tb_sv_unit
+=== Design Unit: work.axi4_tb_sv_unit
+=================================================================================
+
+Assertion Coverage:
+    Assertions                       5         5         0   100.00%
+--------------------------------------------------------------------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass     Vacuous    Disable    Attempt     Active Peak Active ATV
+                                                  Count        Count    Count      Count      Count       Count  Count          
+--------------------------------------------------------------------------------------------------------------------------------
+/axi4_tb_sv_unit/axi4_sequence/body/#ublk#102790532#41/immed__46
+                     axi4_sequence.sv(46)               0        500          0          0        500          0           0 off
+/axi4_tb_sv_unit/axi4_monitor/monitor_read/#anonblk#102790532#67#4#/#ublk#102790532#68/immed__70
+                     axi4_monitor.sv(70)                0      26680          0          0      26680          0           0 off
+/axi4_tb_sv_unit/axi4_monitor/monitor_write/immed__103
+                     axi4_monitor.sv(103)               0        256          0          0        256          0           0 off
+/axi4_tb_sv_unit/axi4_driver/drive_write/#anonblk#102790532#135#4#/#ublk#102790532#136/immed__137
+                     axi4_driver.sv(137)                0      27883          0          0      27883          0           0 off
+/axi4_tb_sv_unit/axi4_driver/drive_write/#anonblk#102790532#181#4#/#ublk#102790532#196/immed__198
+                     axi4_driver.sv(198)                0      21077          0          0      21077          0           0 off
+
+
+ASSERTION RESULTS:
+--------------------------------------------------------------------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass     Vacuous    Disable    Attempt     Active Peak Active ATV
+                                                  Count        Count    Count      Count      Count       Count  Count          
+--------------------------------------------------------------------------------------------------------------------------------
+/axi4_tb/check/AWREADY_rst_assert
+                     axi4_assert.sv(22)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/WREADY_rst_assert
+                     axi4_assert.sv(32)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/BRESP_reset_assert
+                     axi4_assert.sv(42)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/BVALID_reset_assert
+                     axi4_assert.sv(52)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/ARREADY_reset_assert
+                     axi4_assert.sv(62)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/RDATA_reset_assert
+                     axi4_assert.sv(72)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/RRESP_reset_assert
+                     axi4_assert.sv(82)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/RVALID_reset_assert
+                     axi4_assert.sv(92)                 0          2     246702          0     246704          0           1 off
+/axi4_tb/check/RLAST_reset_assert
+                     axi4_assert.sv(102)                0          2     246702          0     246704          0           1 off
+/axi4_tb/check/AWVALID_AWREADY_assert
+                     axi4_assert.sv(120)                0        256     246447          1     246704          0           1 off
+/axi4_tb/check/AWADDR_STABLE_assert
+                     axi4_assert.sv(132)                0         15     246688          1     246704          0           1 off
+/axi4_tb/check/AWLEN_STABLE_assert
+                     axi4_assert.sv(142)                0         15     246688          1     246704          0           1 off
+/axi4_tb/check/AWSIZE_STABLE_assert
+                     axi4_assert.sv(152)                0         15     246688          1     246704          0           1 off
+/axi4_tb/check/WDATA_STABLE_assert
+                     axi4_assert.sv(170)                0         15     246688          1     246704          0           1 off
+/axi4_tb/check/WLAST_AT_LAST_assert
+                     axi4_assert.sv(186)                0        256     246447          1     246704          0           1 off
+/axi4_tb/check/BVALID_ASSERT_assert
+                     axi4_assert.sv(203)                0        256     246447          1     246704          0           1 off
+/axi4_tb/check/BVALID_DEASSERT_assert
+                     axi4_assert.sv(216)                0        255     246447          1     246704          1           1 off
+/axi4_tb/check/BRESP_STABLE_assert
+                     axi4_assert.sv(230)                0        256     246447          1     246704          0           1 off
+/axi4_tb/check/ARVALID_AWREADY_assert
+                     axi4_assert.sv(248)                0        244     246459          1     246704          0           1 off
+/axi4_tb/check/ARADDR_STABLE_assert
+                     axi4_assert.sv(259)                0        244     246458          2     246704          0           1 off
+/axi4_tb/check/ARLEN_STABLE_assert
+                     axi4_assert.sv(269)                0        244     246458          2     246704          0           1 off
+/axi4_tb/check/ARSIZE_STABLE_assert
+                     axi4_assert.sv(279)                0        244     246458          2     246704          0           1 off
+/axi4_tb/check/RVALID_ASSERT_assert
+                     axi4_assert.sv(297)                0      92909     153794          1     246704          0           2 off
+/axi4_tb/check/RLAST_AT_LAST_assert
+                     axi4_assert.sv(313)                0        244     246459          1     246704          0           1 off
+/axi4_tb/check/BRESP_ASSERT_assert
+                     axi4_assert.sv(328)                0        256     246447          1     246704          0           1 off
+/axi4_tb/check/boundary_4KB_WRITE_assert
+                     axi4_assert.sv(343)                0        293     246410          1     246704          0           1 off
+/axi4_tb/check/boundary_4KB_READ_assert
+                     axi4_assert.sv(353)                0      22454     224249          1     246704          0           1 off
+/axi4_tb/check/MEMORY_RANGE_WRITE_assert
+                     axi4_assert.sv(368)                0        290     246413          1     246704          0           1 off
+/axi4_tb/check/MEMORY_RANGE_READ_assert
+                     axi4_assert.sv(378)                0      21820     224883          1     246704          0           1 off
+/axi4_tb_sv_unit/axi4_sequence/body/#ublk#102790532#41/immed__46
+                     axi4_sequence.sv(46)               0        500          0          0        500          0           0 off
+/axi4_tb_sv_unit/axi4_monitor/monitor_read/#anonblk#102790532#67#4#/#ublk#102790532#68/immed__70
+                     axi4_monitor.sv(70)                0      26680          0          0      26680          0           0 off
+/axi4_tb_sv_unit/axi4_monitor/monitor_write/immed__103
+                     axi4_monitor.sv(103)               0        256          0          0        256          0           0 off
+/axi4_tb_sv_unit/axi4_driver/drive_write/#anonblk#102790532#135#4#/#ublk#102790532#136/immed__137
+                     axi4_driver.sv(137)                0      27883          0          0      27883          0           0 off
+/axi4_tb_sv_unit/axi4_driver/drive_write/#anonblk#102790532#181#4#/#ublk#102790532#196/immed__198
+                     axi4_driver.sv(198)                0      21077          0          0      21077          0           0 off
+
+Total Coverage By Instance (filtered view): 100.00%
+

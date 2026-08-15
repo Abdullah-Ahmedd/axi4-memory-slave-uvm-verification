@@ -1,6 +1,6 @@
 `timescale 1ns/1ps 
 
-`include "axi4_if.sv"
+//`include "axi4_if.sv"
 `include "axi4_pkg.sv"
 
 `include "uvm_macros.svh"
@@ -19,7 +19,7 @@ module axi4_tb;
 
 //interface instantiation
 axi4_if 
-(
+#(
 .DATA_WIDTH ( DATA_WIDTH ),
 .ADDR_WIDTH ( ADDR_WIDTH ),
 .LEN_WIDTH ( LEN_WIDTH ),
@@ -74,8 +74,8 @@ DUT
 );
 
 //assertions instantiation
-axi4_assertions check
-( vif );
+axi4_assert check
+ (vif );
 
 //clock generation
 initial
@@ -91,7 +91,7 @@ initial
 initial
   begin
     //config the interface 
-    uvm_config_db #( virtual vif ) :: set("*","axi4_if", vif);
+    uvm_config_db #( virtual axi4_if ) :: set(null,"*","vif", vif);
 
     //run tests
     run_test("axi4_test");

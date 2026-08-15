@@ -1,5 +1,6 @@
 package axi4_pkg;
 
+	  `include "axi4_memory.sv"
     `include "axi4_transaction.sv"
     `include "axi4_coverage.sv"
     `include "axi4_sequence.sv"

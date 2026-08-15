@@ -7,7 +7,7 @@
 `include "uvm_macros.svh"
 import uvm_pkg ::*;
 
-class axi4_sequencer extends uvm_sequencer #( axi4_transaction );
+class axi4_sequencer extends uvm_sequencer #(axi4_transaction);
 
   axi4_common_cfg c_cfg;
 
@@ -23,7 +23,7 @@ class axi4_sequencer extends uvm_sequencer #( axi4_transaction );
 function void build_phase( uvm_phase phase );
   super.build_phase( phase );
   if(
-    !uvm_config_db#( axi4_common_cfg ) :: get(this , "*" , c_cfg )
+    !uvm_config_db#( axi4_common_cfg ) :: get(this , "*" , "c_cfg" , c_cfg )
     )
       begin
         `uvm_fatal("[axi4_sequencer]","something is wrong as the axi4_common_cfg was not retrived sucessfully");

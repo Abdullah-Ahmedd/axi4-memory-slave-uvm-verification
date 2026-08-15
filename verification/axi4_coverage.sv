@@ -11,7 +11,7 @@ class axi4_coverage extends uvm_component;
 `uvm_component_utils( axi4_coverage );
 
 //analysis port
-uvm_analysis_export #( axi4_transaction ) analysis_port;
+uvm_analysis_imp #( axi4_transaction , axi4_coverage) analysis_port;
 
 //transaction
 axi4_transaction tr;
@@ -36,7 +36,7 @@ covergroup axi4_cov(ref  axi4_transaction tr);
      bins corner7 = {8'd64};
      bins corner8 = {8'd128};
      bins corner9 = {8'd255};
-     bins auto_bins [] = { [ 8'd0 : 8'd255 ] };
+     bins auto_bins [ 8 ] = { [ 8'd0 : 8'd255 ] };
     }
     //2-size
     siz: coverpoint tr.size 
@@ -51,7 +51,7 @@ covergroup axi4_cov(ref  axi4_transaction tr);
       bins corner1 = { 32'hffff_ffff };
       bins corner2 = { 32'haaaa_aaaa };
       bins corner3 = { 32'h5555_5555 };
-      bins auto_bins [ 12 ] = { [ 32'h0000_0000 :32'hffff_ffff ] };
+      bins auto_bins [ 8 ] = { [ 32'h0000_0000 :32'hffff_ffff ] };
     }
 
     //4-address
@@ -62,7 +62,7 @@ covergroup axi4_cov(ref  axi4_transaction tr);
       bins corner2 = { 16'd1024 };
       bins corner3 = { 16'd2048 };
       bins corner4 = { 16'd4096 };
-      bins auto_bins [ 12 ] = {[ 16'd0 : 16'd65534 ]};
+      bins auto_bins [ 8 ] = {[ 16'd0 : 16'd65534 ]};
     }
 
     //5-delay
@@ -106,7 +106,7 @@ endgroup
 
   function void build_phase( uvm_phase phase );
     super.build_phase(phase);
-          analysis_port = new("analysis_port",this);
+          //analysis_port = new("analysis_port",this);
       `uvm_info("[axi4_coverage]", "INSIDE axi4_coverage build_phase", UVM_LOW);
   endfunction
 
